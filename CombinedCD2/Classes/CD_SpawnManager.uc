@@ -702,6 +702,7 @@ function int GetNumAINeeded()
 */
 function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > SquadsList, out array< class<KFPawn_Monster> >  AISpawnList)
 {
+	
 	local KFAISpawnSquad Squad;
 	local EAIType AIType;
 	local int i, j, RandNum, waveIndex;
@@ -805,6 +806,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 		}
 	}
 
+
 	if( TempSpawnList.Length > 0 )
 	{
 		// Copy temp spawn list to AISpawnList, one element at a time
@@ -832,6 +834,163 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 			DesiredSquadType = LargestMonsterSquadType;
 		}
 	}
+
+	if(ZedsEnum==ZEDS_Extreme){
+		MatchClasses.Length = 2;
+		MatchClasses[0] = AIClassList[AT_Crawler];
+		MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedCrawler_Special';
+		ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedCrawler_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 2;
+					MatchClasses[0] = AIClassList[AT_AlphaClot];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedClot_Alpha';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedClot_Alpha_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 4;
+					MatchClasses[0] = AIClassList[AT_GoreFast];
+					MatchClasses[1] = AIClassList[AT_EliteGoreFast];
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedGorefast_Special';
+					MatchClasses[3] = class'CombinedCD2.CD_Pawn_ZedGorefast_Regular';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedGorefast_Special_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_Stalker];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedStalker_Special';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedStalker_Regular';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedStalker_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_Husk];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedHusk_Special';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedHusk_Regular';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedHusk_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_FleshPound];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedFleshpound_RS';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedFleshpound_NRS';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedFleshpound_Extreme',
+					                 AISpawnList );
+
+					// Same, but for minis
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_FleshpoundMini];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedFleshpoundMini_NRS';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedFleshpoundMini_RS';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedFleshpoundMini_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Clot];
+			        MatchClasses[1] = class'CD_Pawn_ZedClot_Cyst';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedClot_Cyst_Extreme', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_SlasherClot];
+			        MatchClasses[1] = class'CD_Pawn_ZedClot_Slasher';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedClot_Slasher_Extreme', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Bloat];
+			        MatchClasses[1] = class'CD_Pawn_ZedBloat';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedBloat_Extreme', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Siren];
+			        MatchClasses[1] = class'CD_Pawn_ZedSiren';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedSiren_Extreme', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Scrake];
+			        MatchClasses[1] = class'CD_Pawn_ZedScrake';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedScrake_Extreme', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_EliteClot];
+			        MatchClasses[1] = class'CD_Pawn_ZedClot_Alpha';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedClot_Alpha_Extreme', AISpawnList);
+
+	}
+	else if(ZedsEnum==ZEDS_Insane){
+		MatchClasses.Length = 2;
+		MatchClasses[0] = AIClassList[AT_Crawler];
+		MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedCrawler_Special';
+		ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedCrawler_Insane',
+					                 AISpawnList );
+		MatchClasses.Length = 2;
+					MatchClasses[0] = AIClassList[AT_AlphaClot];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedClot_Alpha';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedClot_Alpha_Insane',
+					                 AISpawnList );
+		MatchClasses.Length = 4;
+					MatchClasses[0] = AIClassList[AT_GoreFast];
+					MatchClasses[1] = AIClassList[AT_EliteGoreFast];
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedGorefast_Special';
+					MatchClasses[3] = class'CombinedCD2.CD_Pawn_ZedGorefast_Regular';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedGorefast_Special_Insane',
+					                 AISpawnList );
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_Stalker];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedStalker_Regular';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedStalker_Special';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedStalker_Insane',
+					                 AISpawnList );
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_Husk];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedHusk_Special';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedHusk_Regular';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedHusk_Extreme',
+					                 AISpawnList );
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_FleshPound];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedFleshpound_RS';
+					MatchClasses[2] = class'CombinedCD2.CD_Pawn_ZedFleshpound_NRS';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedFleshpound_Insane',
+					                 AISpawnList );
+
+					// Same, but for minis
+		MatchClasses.Length = 3;
+					MatchClasses[0] = AIClassList[AT_FleshpoundMini];
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedFleshpoundMini_NRS';
+					MatchClasses[1] = class'CombinedCD2.CD_Pawn_ZedFleshpoundMini_RS';
+					ReplaceZedClass( MatchClasses,
+					                 class'CombinedCD2.CD_Pawn_ZedFleshpoundMini_Insane',
+					                 AISpawnList );
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Clot];
+			        MatchClasses[1] = class'CD_Pawn_ZedClot_Cyst';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedClot_Cyst_Insane', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_SlasherClot];
+			        MatchClasses[1] = class'CD_Pawn_ZedClot_Slasher';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedClot_Slasher_Insane', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Bloat];
+			        MatchClasses[1] = class'CD_Pawn_ZedBloat';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedBloat_Insane', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Siren];
+			        MatchClasses[1] = class'CD_Pawn_ZedSiren';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedSiren_Insane', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_Scrake];
+			        MatchClasses[1] = class'CD_Pawn_ZedScrake';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedScrake_Insane', AISpawnList);
+		MatchClasses.Length = 2;
+			        MatchClasses[0] = AIClassList[AT_EliteClot];
+			        MatchClasses[1] = class'CD_Pawn_ZedClot_Alpha';
+			        ReplaceZedClass(MatchClasses, class'CD_Pawn_ZedClot_Alpha_Insane', AISpawnList);
+
+	}
+
+	else{
 
 	if ( !AlbinoCrawlersBool )
 	{
@@ -938,6 +1097,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 		                 (FRand() < 0.5f) ? class'KFGameContent.KFPawn_ZedBloat' : class'KFGameContent.KFPawn_ZedSiren',
 		                 AISpawnList );
 	}
+	}
 	
 	if ( !FleshpoundRageSpawnsBool )
 	{
@@ -972,6 +1132,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 	}
 }
 
+
 function ReplaceZedClass( const array< class< KFPawn_Monster > > MatchClasses,
 						  const class< KFPawn_Monster > ReplacementClass,
 						  out array< class<KFPawn_Monster> >  AISpawnList )
@@ -996,8 +1157,10 @@ function ReplaceZedClass( const array< class< KFPawn_Monster > > MatchClasses,
 		}
 	}
 
+
 	`cdlog("Total zeds in this spawnlist converted to "$ string(ReplacementClass) $": "$ conversions, bLogControlledDifficulty);
 }
+
 
 // ================================================
 //  Additional Features
